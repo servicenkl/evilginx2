@@ -29,8 +29,4 @@ encoded javascript inject!
 
 webSocket connections are now properly proxied.
 
-<<<<<<< HEAD
-Group: https://t.me/rowdy6six
 
-=======
->>>>>>> 07f38658c0afc06e4d53ccddbc21357728fbbf53
