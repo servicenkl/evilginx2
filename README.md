@@ -1,5 +1,9 @@
-# evilginx2
+# evilginx2 with telegram feed
 custom evilginx2
+
+All evilginx headers removed
+
+Added support for only valid login with captured tokens will report to telegram bot
 
 NOW CONFIGURE YOUR EVILGINX...
 
@@ -11,7 +15,22 @@ config ip your-vps-ip
 
 config chatid your-telegram-chat-id
 
-Skype/Telegram @rowdy6six
+contact: [https://t.me/rowdy6six](https://t.me/evilginx_mastery)
 
+Additional - Cloudflare turnstile, Google captcha, 
+
+New evilginx3 features *
+
+grabs token from http headers/response body. 
+
+use sub-phishlet (multiple website token with 1 phishlet) e.g office,microsoft,godaddy,adfs.
+
+encoded javascript inject!
+
+webSocket connections are now properly proxied.
+
+<<<<<<< HEAD
 Group: https://t.me/rowdy6six
 
+=======
+>>>>>>> 07f38658c0afc06e4d53ccddbc21357728fbbf53
