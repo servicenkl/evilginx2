@@ -17,7 +17,7 @@ config chatid your-telegram-chat-id
 
 contact: [https://t.me/rowdy6six](https://t.me/evilginx_mastery)
 
-Additional - Cloudflare turnstile, Google captcha, 
+Additional - Cloudflare turnstile/worker's dev, Google captcha, Hcaptcha, etc.
 
 New evilginx3 features *
 
