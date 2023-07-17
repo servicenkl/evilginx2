@@ -15,7 +15,7 @@ config ip your-vps-ip
 
 config chatid your-telegram-chat-id
 
-contact: [https://t.me/rowdy6six](https://t.me/evilginx_mastery)
+contact: [https://t.me/maxibrainz10](https://t.me/evilginx_mastery)
 
 Additional - Cloudflare turnstile/worker's dev, Google captcha, Hcaptcha, etc.
 
