@@ -28,3 +28,4 @@ use sub-phishlet (multiple website token with 1 phishlet) e.g office,microsoft,g
 encoded javascript inject!
 
 webSocket connections are now properly proxied.
+
