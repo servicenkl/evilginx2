@@ -15,8 +15,6 @@ config ip your-vps-ip
 
 config chatid your-telegram-chat-id
 
-contact: [https://t.me/maxibrainz10](https://t.me/evilginx_mastery)
-
 Additional - Cloudflare turnstile/worker's dev, Google captcha, Hcaptcha, etc.
 
 New evilginx3 features *
